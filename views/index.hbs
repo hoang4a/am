@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+    ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(197, 171, 171);
+}
+li {
+  float: left;
+}
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+li a:hover {
+  background-color: #111;
+}
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #483838;
+   color: white;
+   text-align: center;
+}
+ul .hoang {
+  background-color: #c39b9b;
+}
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div>
+ <ul>
+  <li><a href="/insert">Home</a></li>
+  <li><a href="#news">News</a></li>
+  <li><a href="#contact">Contact</a></li>
+  <li style="float:right"><a class="active" href="#about">About</a></li>
+</ul>
+  </div>
+<div class="result" style="color: black;margin-top: 20px;">
+<table border="1" align="center" width = "80%">
+        <tr style="color: rgb(111, 0, 255);">
+            <th>ID</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Amout</th>
+            <th>Staff</th>
+        </tr>
+    {{# each model}}
+        
+        <tr>
+            <td>{{_id}}</td>
+            <td>{{productName}}</td>
+            <td>{{price}}</td>
+            <td>{{amout}}</td>
+            <td>{{StaffName}}</td>
+            <td><a href="/delete?id={{_id}}" onclick="return confirmDelete('{{productName}}')"> Delete </a>
+            <a href="/edit?id={{_id}}" onclick="return confirmDelete()"> Edit </a>
+            </td>
+        </tr>
+    {{/each}}
+    </table>
+</div>   
+<div class="footer">
+  <p>Coppyright 2020 design by Tran Viet Hoang</p>
+</div>
+
+</body>
+</html>

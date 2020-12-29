@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> 
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #58257b;
+  border-radius: 4px;
+}
+</style>
+</head>
+<body>
+
+<form action="/doInsert" method="POST">
+  <label for="fname">Product Name</label>
+  <input type="text" id="fname" name="txtName">{{error.name}}
+  <label for="fprice">Price</label>
+  <input type="text" id="fprice" name="txtPrice">{{error.price}}
+  <label for="famout">Amout</label>
+  <input type="text" id="famout" name="txtAmout">
+  <label for="fstaff">Staff Name</label>
+  <input type="text" id="fstaff" name="txtStaff">
+  <br>
+  <input type = "submit" value = "Insert">
+</form>
+
+</body>
+</html>
