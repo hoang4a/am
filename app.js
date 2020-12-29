@@ -27,30 +27,17 @@ app.post("/doInsert", async (req, res) => {
   let priceInput = req.body.txtPrice;
   let amoutInput = req.body.txtAmout;
   let staffInput = req.body.txtStaff;
-  let errorMsg = {
-    name: "",
-    price: "",
+
+  let newProduct = {
+    productName: nameInput,
+    price: priceInput,
+    amout: amoutInput,
+    StaffName: staffInput,
   };
-  if (nameInput != null && nameInput.length < 5) {
-    errorMsg.name = "Name's length >=5";
-  }
-  if (priceInput != null && eval(priceInput) < 5) {
-    errorMsg.price = "Price must >=0";
-  }
-  if (errorMsg.name.length != 0 || errorMsg.price.length) {
-    res.render("insert", { error: errorMsg });
-  } else {
-    let newProduct = {
-      productName: nameInput,
-      price: priceInput,
-      amout: amoutInput,
-      StaffName: staffInput,
-    };
-    let client = await MongoClient.connect(url);
-    let dbo = client.db("ProductDB");
-    await dbo.collection("icream").insertOne(newProduct);
-    res.redirect("/");
-  }
+  let client = await MongoClient.connect(url);
+  let dbo = client.db("ProductDB");
+  await dbo.collection("icream").insertOne(newProduct);
+  res.redirect("/");
 });
 
 const PORT = process.env.PORT || 3000;
