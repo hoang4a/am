@@ -28,8 +28,8 @@ app.post("/doInsert", async (req, res) => {
   let priceInput = req.body.txtPrice;
   let amoutInput = req.body.txtAmout;
   let staffInput = req.body.txtStaff;
-  let cutStr = nameInput.substring(1);
-  let staffStr = staffInput.substring(1);
+  let cutStr = nameInput.substring(0);
+  let staffStr = staffInput.substring(0);
   let errorMsg = {
     name: "",
     price: "",
@@ -72,6 +72,18 @@ function checkiput(str) {
     return true;
   } else return false;
 }
+app.get("/delete", async (req, res) => {
+  //id: string from URL
+  let id = req.query.id;
+  //convert id from URL to MongoDB' id
+  let ObjectID = require("mongodb").ObjectID(id);
+  //the conditon to delete
+  let condition = { _id: ObjectID };
+  let client = await MongoClient.connect(url);
+  let dbo = client.db("ProductDB");
+  await dbo.collection("icream").deleteOne(condition);
+  res.redirect("/");
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT);
